@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Burnout Reset</title>
+<link rel="stylesheet" href="fonts/fonts-local.css">
+<style>
+  :root{
+    --cream:#F1EDE5;
+    --cream-2:#EDE7DC;
+    --white:#FDFCF8;
+    --taupe:#C9B7A2;
+    --taupe-light:#DDD2C3;
+    --brown:#8A6E55;
+    --ink:#1D1A16;
+    --ink-soft:#3A362F;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{background:#fff;}
+  body{font-family:'Poppins',sans-serif;color:var(--ink);font-weight:300;}
+  @page{size:8.5in 11in;margin:0;}
+  .page{
+    width:8.5in;height:11in;
+    background:var(--cream);
+    page-break-after:always;
+    position:relative;
+    overflow:hidden;
+    padding:0.75in 0.8in;
+  }
+  .serif{font-family:'Playfair Display',serif;}
+  .script{font-family:'Great Vibes',cursive;font-weight:400;}
+
+  /* ---------- generic blocks ---------- */
+  .kicker{
+    font-family:'Poppins',sans-serif;font-weight:500;
+    letter-spacing:0.28em;text-transform:uppercase;
+    font-size:9.5pt;color:var(--brown);text-align:center;
+  }
+  .day-label{
+    font-family:'Poppins',sans-serif;font-weight:500;
+    letter-spacing:0.3em;text-transform:uppercase;
+    font-size:10pt;color:var(--brown);text-align:center;margin-bottom:10px;
+  }
+  h1.day-title{
+    font-family:'Playfair Display',serif;font-weight:500;
+    font-size:27pt;text-align:center;line-height:1.2;margin-bottom:6px;
+  }
+  .script-sub{
+    font-family:'Great Vibes',cursive;font-size:22pt;color:var(--ink-soft);
+    text-align:center;margin-bottom:22px;
+  }
+  p.body{font-size:10.5pt;line-height:1.75;color:var(--ink-soft);margin-bottom:12px;}
+  .quotebox{
+    border:1px solid var(--ink);background:var(--white);
+    padding:18px 24px;margin:18px 0;
+    font-family:'Playfair Display',serif;font-style:italic;
+    font-size:12.5pt;line-height:1.6;text-align:center;color:var(--ink);
+  }
+  .actionbox{
+    background:var(--taupe);border:1px solid var(--ink);
+    padding:16px 22px;margin-top:18px;
+  }
+  .actionbox h4{
+    font-family:'Poppins',sans-serif;font-weight:600;font-size:10.5pt;
+    letter-spacing:0.12em;text-transform:uppercase;margin-bottom:6px;
+  }
+  .actionbox p{font-size:10pt;line-height:1.65;color:var(--ink);}
+  .footer-tag{
+    position:absolute;bottom:0.45in;left:0;right:0;text-align:center;
+    font-size:8pt;letter-spacing:0.25em;text-transform:uppercase;color:var(--brown);
+    font-weight:400;
+  }
+
+  /* ---------- worksheet ---------- */
+  .ws-frame{
+    border:1.5px solid var(--brown);
+    height:100%;
+    padding:0.45in 0.5in;
+  }
+  .ws-title{
+    font-family:'Great Vibes',cursive;font-size:27pt;text-align:center;
+    margin-bottom:20px;line-height:1.25;
+  }
+  .ws-q{margin-bottom:20px;}
+  .ws-q .q{
+    font-family:'Poppins',sans-serif;font-weight:500;font-size:10.5pt;
+    margin-bottom:12px;
+  }
+  .ws-q .q::before{content:"•  ";}
+  .line{border-bottom:1px solid var(--ink-soft);height:24px;margin:0 0 2px 18px;}
+  .bigbox{
+    border:1px solid var(--ink-soft);background:var(--white);
+    height:2.4in;margin-left:18px;
+  }
+
+  /* ---------- checklist ---------- */
+  .check-row{
+    display:flex;align-items:flex-start;gap:14px;
+    background:var(--white);border:1px solid var(--ink);
+    padding:11px 16px;margin-bottom:9px;
+  }
+  .check-row .box{
+    width:17px;height:17px;border:1.4px solid var(--ink);border-radius:50%;
+    flex:0 0 auto;margin-top:1px;background:var(--cream);
+  }
+  .check-row p{font-size:10pt;line-height:1.5;color:var(--ink-soft);}
+
+  /* ---------- overview table ---------- */
+  .ov-row{display:flex;gap:0;margin-bottom:10px;border:1px solid var(--ink);}
+  .ov-day{
+    flex:0 0 1.15in;background:var(--taupe);display:flex;align-items:center;justify-content:center;
+    font-family:'Playfair Display',serif;font-size:11pt;font-weight:500;
+    border-right:1px solid var(--ink);padding:10px 6px;text-align:center;
+  }
+  .ov-body{flex:1;background:var(--white);padding:10px 16px;}
+  .ov-body b{font-family:'Poppins',sans-serif;font-weight:500;font-size:10pt;display:block;}
+  .ov-body span{font-size:9pt;color:var(--ink-soft);line-height:1.45;display:block;margin-top:1px;}
+
+  /* ---------- cards ---------- */
+  .card{
+    background:var(--white);border:1px solid var(--ink);padding:20px 24px;margin-bottom:16px;
+  }
+  .card h3{font-family:'Playfair Display',serif;font-weight:500;font-size:15pt;margin-bottom:6px;}
+  .card p{font-size:10pt;line-height:1.65;color:var(--ink-soft);}
+  .card .tagline{
+    font-size:8.5pt;letter-spacing:0.18em;text-transform:uppercase;color:var(--brown);
+    font-weight:500;margin-bottom:8px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ 1. COVER ============ -->
+<section class="page" style="padding:0;">
+  <div style="position:absolute;inset:0;background:linear-gradient(160deg,#EFEAE1 0%,#E7E0D3 55%,#EFEAE1 100%);"></div>
+  <div style="position:absolute;left:0.9in;right:0.9in;top:0.7in;bottom:0;background:var(--cream);border-radius:50% 50% 0 0 / 30% 30% 0 0;box-shadow:0 0 40px rgba(0,0,0,0.05);"></div>
+  <div style="position:relative;text-align:center;padding-top:2.1in;">
+    <div class="script" style="font-size:30pt;">the</div>
+    <div class="serif" style="font-size:52pt;font-weight:500;letter-spacing:0.04em;line-height:1.15;margin-top:8px;">BURNOUT<br>RESET</div>
+    <div style="margin:34px auto 0;max-width:4.6in;font-family:'Playfair Display',serif;font-size:14pt;line-height:1.6;letter-spacing:0.06em;text-transform:uppercase;">A 7-day recovery plan for women who are tired of being tired</div>
+    <div style="width:1px;height:0.55in;background:var(--ink);margin:0.45in auto;"></div>
+    <div class="script" style="font-size:21pt;color:var(--ink-soft);">a guide from</div>
+    <div style="font-family:'Playfair Display',serif;font-size:16pt;letter-spacing:0.28em;margin-top:6px;">DOLLY BUILDS</div>
+  </div>
+</section>
+
+<!-- ============ 2. WELCOME ============ -->
+<section class="page">
+  <div class="script" style="font-size:38pt;text-align:center;margin-bottom:26px;">Welcome</div>
+  <h1 class="day-title" style="font-size:20pt;margin-bottom:22px;">You're not lazy.<br>You're running on empty.</h1>
+  <p class="body">If you picked up this guide, chances are you already know the feeling. You wake up tired. You get through the day on autopilot. You're doing everything — the job, the home, the family, the being-fine — and somewhere along the way, you stopped feeling like yourself.</p>
+  <p class="body">You don't need another lecture about self-care Sundays or bubble baths. You need a practical way to get your energy, clarity, and self back — without quitting your job tomorrow, and without adding one more overwhelming thing to your plate.</p>
+  <p class="body">That's what this is. Seven days. Ten to twenty minutes a day. One small, doable shift at a time.</p>
+  <div class="quotebox">"You can't pour from an empty cup —<br>but you can stop pretending the cup is full."</div>
+  <p class="body"><b style="font-weight:500;">How to use this guide:</b> each day has a short read and a worksheet. Do them in order — the days build on each other. You can start any day of the week, but mornings or just before bed work best. Keep a pen nearby; writing by hand slows the mind down in the best way.</p>
+  <p class="body">By Day 7, you won't be "fixed" — burnout doesn't work like that. But you will have named what's draining you, plugged your biggest leaks, rested without guilt at least once, and designed a week you can actually live with. That's a real beginning.</p>
+  <div class="footer-tag">The Burnout Reset · Dolly Builds</div>
+</section>
+
+<!-- ============ 3. IS THIS BURNOUT ============ -->
+<section class="page">
+  <div class="kicker">Before we begin</div>
+  <h1 class="day-title">Is This Burnout?</h1>
+  <div class="script-sub">check every box that feels familiar</div>
+  <div class="check-row"><div class="box"></div><p>I wake up tired, even after a full night's sleep.</p></div>
+  <div class="check-row"><div class="box"></div><p>I start dreading Monday on Saturday evening.</p></div>
+  <div class="check-row"><div class="box"></div><p>Small tasks — replying to a message, booking an appointment — feel weirdly heavy.</p></div>
+  <div class="check-row"><div class="box"></div><p>I'm more cynical, irritable, or snappy than I used to be.</p></div>
+  <div class="check-row"><div class="box"></div><p>My mind won't shut up at night, but goes blank when I need to focus.</p></div>
+  <div class="check-row"><div class="box"></div><p>I keep saying "after this deadline, things will calm down" — and they never do.</p></div>
+  <div class="check-row"><div class="box"></div><p>Things I used to enjoy now feel like obligations.</p></div>
+  <div class="check-row"><div class="box"></div><p>I feel guilty when I rest, so I rest badly — scrolling, half-working, half-worrying.</p></div>
+  <div class="check-row"><div class="box"></div><p>I've stopped feeling proud of my work, even when I do it well.</p></div>
+  <div class="check-row"><div class="box"></div><p>I fantasize about disappearing for a while — no calls, no questions, no one needing me.</p></div>
+  <div class="actionbox">
+    <h4>What your score means</h4>
+    <p><b>0–3:</b> you're stretched, not burnt out — this guide will help you protect your energy before it slides. &nbsp;<b>4–7:</b> you're in the burnout zone; the next seven days matter. &nbsp;<b>8–10:</b> you've been running on empty for a while. Be gentle with yourself this week — and if heaviness or hopelessness persists, please also talk to a doctor or therapist. This guide supports you; it doesn't replace professional care.</p>
+  </div>
+  <div class="footer-tag">The Burnout Reset · Dolly Builds</div>
+</section>
+
+<!-- ============ 4. THE 7 DAYS ============ -->
+<section class="page">
+  <div class="kicker">Your week ahead</div>
+  <h1 class="day-title">The 7 Days at a Glance</h1>
+  <div class="script-sub">small steps, in order, on purpose</div>
+  <div class="ov-row"><div class="ov-day">Day 1</div><div class="ov-body"><b>Name What's Draining You</b><span>Stop calling it "just tired." See your burnout clearly, on paper.</span></div></div>
+  <div class="ov-row"><div class="ov-day">Day 2</div><div class="ov-body"><b>Quiet the Noise</b><span>Empty the racing mind with a guided brain dump.</span></div></div>
+  <div class="ov-row"><div class="ov-day">Day 3</div><div class="ov-body"><b>Plug the Energy Leaks</b><span>Find where your energy actually goes — and set one boundary.</span></div></div>
+  <div class="ov-row"><div class="ov-day">Day 4</div><div class="ov-body"><b>Rest Without Guilt</b><span>Learn the type of rest you're starved of, and take it — on purpose.</span></div></div>
+  <div class="ov-row"><div class="ov-day">Day 5</div><div class="ov-body"><b>Come Back to Your Body</b><span>Sleep, movement, and micro-breaks: the physical side of recovery.</span></div></div>
+  <div class="ov-row"><div class="ov-day">Day 6</div><div class="ov-body"><b>Remember Who You Are</b><span>Reconnect with the person you were before you were this tired.</span></div></div>
+  <div class="ov-row"><div class="ov-day">Day 7</div><div class="ov-body"><b>Design Your Comeback</b><span>Build a week you can live with — and make your next move calmly.</span></div></div>
+  <div class="actionbox" style="margin-top:24px;">
+    <h4>The rules of the reset</h4>
+    <p>1. Ten to twenty minutes a day. More is not better. &nbsp;2. Write by hand if you can. &nbsp;3. Done, not perfect — a messy worksheet beats a skipped one. &nbsp;4. You don't have to make any big decisions this week. You just have to show up for yourself, seven times.</p>
+  </div>
+  <div class="footer-tag">The Burnout Reset · Dolly Builds</div>
+</section>
+
+<!-- ============ 5. DAY 1 TEACH ============ -->
+<section class="page">
+  <div class="day-label">Day One</div>
+  <h1 class="day-title">Name What's Draining You</h1>
+  <div class="script-sub">you can't fix what you won't name</div>
+  <p class="body">Burnout hides behind polite words. "I'm just tired." "It's a busy phase." "Everyone's stressed." As long as it stays vague, it stays in charge. Today, we make it specific.</p>
+  <p class="body">Burnout has three faces, and you might recognize all of them: <b style="font-weight:500;">exhaustion</b> (your energy is gone before the day starts), <b style="font-weight:500;">cynicism</b> (you've started caring less, on purpose, just to cope), and <b style="font-weight:500;">a shrinking sense of yourself</b> (you do good work and feel nothing; you can't remember the last time you felt proud, or playful, or fully there).</p>
+  <p class="body">Here's what matters: burnout is not a character flaw. It's the predictable result of prolonged output without recovery — made worse when you're carrying invisible loads too: being available to everyone, managing the home in the background, being the one who never drops a ball.</p>
+  <div class="quotebox">"Naming it isn't complaining.<br>Naming it is the first act of taking your life back."</div>
+  <div class="actionbox">
+    <h4>Today's ten minutes</h4>
+    <p>Complete the Day 1 worksheet honestly — no editing yourself, no "it's not that bad." Nobody sees this but you. Precision today makes every other day of this reset easier.</p>
+  </div>
+  <div class="footer-tag">Day One · The Burnout Reset</div>
+</section>
+
+<!-- ============ 6. DAY 1 WS ============ -->
+<section class="page">
+  <div class="ws-frame">
+    <div class="ws-title">Day 1: The Burnout Audit</div>
+    <div class="ws-q"><div class="q">What does a normal week look like for me right now — honestly?</div><div class="line"></div><div class="line"></div><div class="line"></div></div>
+    <div class="ws-q"><div class="q">Which moments of the day drain me the most?</div><div class="line"></div><div class="line"></div><div class="line"></div></div>
+    <div class="ws-q"><div class="q">What am I most tired of pretending to be fine about?</div><div class="line"></div><div class="line"></div><div class="line"></div></div>
+    <div class="ws-q"><div class="q">If I could hand one responsibility to someone else this week, it would be…</div><div class="line"></div><div class="line"></div></div>
+    <div class="ws-q"><div class="q">My energy today, from 1 (empty) to 10 (full): _______ &nbsp;&nbsp;I'll re-check this on Day 7.</div></div>
+  </div>
+</section>
+
+<!-- ============ 7. DAY 2 TEACH ============ -->
+<section class="page">
+  <div class="day-label">Day Two</div>
+  <h1 class="day-title">Quiet the Noise</h1>
+  <div class="script-sub">for minds that won't shut up</div>
+  <p class="body">Burnout isn't only about doing too much. It's about <i>carrying</i> too much — the replaying of conversations, the mental to-do lists, the 2 a.m. spiral about that one email. Your mind is running background apps all day, and they're draining the battery.</p>
+  <p class="body">The fastest relief is embarrassingly simple: get it out of your head and onto paper. Psychologists call it "cognitive offloading." I call it a brain dump. When a thought is written down, your brain stops treating it as an open loop it must keep alive — and quietly lets it go.</p>
+  <p class="body">The rule: write fast, messy, and without judgment. Half sentences are fine. Petty things are fine. "I'm angry that nobody notices how much I do" is more than fine — that one usually needs to come out first.</p>
+  <div class="quotebox">"Your mind is for having ideas,<br>not for holding them."</div>
+  <div class="actionbox">
+    <h4>Today's ten minutes</h4>
+    <p>Set a timer for 7 minutes and fill the brain-dump box on the next page with everything on your mind. Then take 3 minutes for the sorting step below it. That's it. Notice how much lighter your head feels — this is a tool you can use any day, forever.</p>
+  </div>
+  <div class="footer-tag">Day Two · The Burnout Reset</div>
+</section>
+
+<!-- ============ 8. DAY 2 WS ============ -->
+<section class="page">
+  <div class="ws-frame">
+    <div class="ws-title">Day 2: The Brain Dump</div>
+    <div class="ws-q"><div class="q">Empty your mind here — everything, in any order, no editing (7 minutes):</div><div class="bigbox"></div></div>
+    <div class="ws-q"><div class="q">Circle the three things above that are actually mine to solve this week.</div></div>
+    <div class="ws-q"><div class="q">One small action I can take on one of them tomorrow:</div><div class="line"></div><div class="line"></div></div>
+    <div class="ws-q"><div class="q">One thing I've been carrying that I'm officially putting down (not my problem, not this week, or not in my control):</div><div class="line"></div><div class="line"></div></div>
+  </div>
+</section>
+
+<!-- ============ 9. DAY 3 TEACH ============ -->
+<section class="page">
+  <div class="day-label">Day Three</div>
+  <h1 class="day-title">Plug the Energy Leaks</h1>
+  <div class="script-sub">boundaries are maintenance, not drama</div>
+  <p class="body">Yesterday you emptied your mind. Today we find out where your energy actually goes — because burnout is rarely one big thing. It's a hundred small leaks: notifications you answer instantly, meetings that could have been messages, being everyone's default helper, saying yes before you've even checked with yourself.</p>
+  <p class="body">Setting a boundary sounds confrontational, especially if you were raised to be agreeable, helpful, and endlessly available. So let's reframe it: a boundary is not a wall against people. It's a container for your energy. The people who respect you will adjust in a week. The discomfort you feel saying no lasts thirty seconds. The resentment from always saying yes lasts years.</p>
+  <div class="quotebox">"Every time you say yes to something<br>that drains you, you say no to something<br>that could restore you."</div>
+  <div class="actionbox">
+    <h4>Borrow these scripts</h4>
+    <p><b>At work:</b> "I can take this on, but something else on my plate will need to move — which should it be?" &nbsp;<b>The soft no:</b> "I won't be able to do this justice right now, so I'll pass." &nbsp;<b>The delay:</b> "Let me check my week and get back to you tomorrow." (Buying time is a boundary too.)</p>
+  </div>
+  <div class="actionbox" style="background:var(--white);">
+    <h4>Today's ten minutes</h4>
+    <p>List your leaks on the worksheet, pick the one that costs you the most, and choose one boundary to hold this week. One. Small and kept beats big and abandoned.</p>
+  </div>
+  <div class="footer-tag">Day Three · The Burnout Reset</div>
+</section>
+
+<!-- ============ 10. DAY 3 WS ============ -->
+<section class="page">
+  <div class="ws-frame">
+    <div class="ws-title">Day 3: The Energy Leak List</div>
+    <div class="ws-q"><div class="q">My top five energy leaks (people, habits, tasks, apps — be specific):</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div></div>
+    <div class="ws-q"><div class="q">The one leak that costs me the most every week:</div><div class="line"></div><div class="line"></div></div>
+    <div class="ws-q"><div class="q">The one boundary I will hold this week (what, with whom, starting when):</div><div class="line"></div><div class="line"></div><div class="line"></div></div>
+    <div class="ws-q"><div class="q">What I'm afraid will happen if I say no — and what will most likely actually happen:</div><div class="line"></div><div class="line"></div><div class="line"></div></div>
+  </div>
+</section>
+
+<!-- ============ 11. DAY 4 TEACH ============ -->
+<section class="page">
+  <div class="day-label">Day Four</div>
+  <h1 class="day-title">Rest Without Guilt</h1>
+  <div class="script-sub">rest is a skill, and you can relearn it</div>
+  <p class="body">Here's the trap most exhausted women fall into: you finally get a free evening, you spend it scrolling with mild guilt, and you wake up just as tired. That's because collapsing is not resting — and because not all tiredness needs the same cure.</p>
+  <p class="body">There are different kinds of rest, and you're probably starved of a specific one: <b style="font-weight:500;">physical</b> (sleep, stillness), <b style="font-weight:500;">mental</b> (a break from decisions and problem-solving), <b style="font-weight:500;">sensory</b> (silence, no screens), <b style="font-weight:500;">emotional</b> (time where you don't have to manage anyone's feelings, including performing "I'm fine"), <b style="font-weight:500;">social</b> (either genuine alone time, or time with people who don't drain you), and <b style="font-weight:500;">creative</b> (beauty and play with no productive purpose).</p>
+  <p class="body">And the guilt? Guilt shows up because somewhere along the way you learned that your worth is your output. It isn't. Rest is not a reward you earn after the to-do list is done — the list is never done. Rest is maintenance for a human being.</p>
+  <div class="quotebox">"You are allowed to rest<br>before you are exhausted."</div>
+  <div class="actionbox">
+    <h4>Today's ten minutes (plus thirty)</h4>
+    <p>Identify your most-starved type of rest on the worksheet, then schedule thirty minutes of it in the next 24 hours — phone in another room. Sign the permission slip. It sounds silly. Do it anyway; it works.</p>
+  </div>
+  <div class="footer-tag">Day Four · The Burnout Reset</div>
+</section>
+
+<!-- ============ 12. DAY 4 WS ============ -->
+<section class="page">
+  <div class="ws-frame">
+    <div class="ws-title">Day 4: Real Rest</div>
+    <div class="ws-q"><div class="q">The type of rest I'm most starved of right now (physical / mental / sensory / emotional / social / creative):</div><div class="line"></div><div class="line"></div></div>
+    <div class="ws-q"><div class="q">What real rest looks like for me — three things that genuinely refill me (not just numb me):</div><div class="line"></div><div class="line"></div><div class="line"></div></div>
+    <div class="ws-q"><div class="q">My thirty minutes of rest: what I'll do, and when exactly I'll take it in the next 24 hours:</div><div class="line"></div><div class="line"></div></div>
+    <div class="ws-q"><div class="q">The story I tell myself when I feel guilty resting — and what I'd say to my best friend if she said it:</div><div class="line"></div><div class="line"></div><div class="line"></div></div>
+    <div class="ws-q"><div class="q" style="margin-bottom:16px;">Permission slip: &nbsp;I, ____________________ , give myself full permission to rest without earning it first.&nbsp;&nbsp;Signed: ____________________</div></div>
+  </div>
+</section>
+
+<!-- ============ 13. DAY 5 TEACH ============ -->
+<section class="page">
+  <div class="day-label">Day Five</div>
+  <h1 class="day-title">Come Back to Your Body</h1>
+  <div class="script-sub">burnout lives in the body, not just the calendar</div>
+  <p class="body">You can't think your way out of burnout, because burnout isn't only in your thoughts — it's in your shoulders that live near your ears, your jaw that's always slightly clenched, your shallow breath, your 1 a.m. scrolling that steals tomorrow's energy.</p>
+  <p class="body">Today is about three small physical anchors, not a fitness overhaul:</p>
+  <p class="body"><b style="font-weight:500;">1. Protect the wind-down.</b> The hour before sleep decides the quality of your night. Screens off (or at least out of bed), lights low, and let your brain land — this is a perfect time for a two-minute brain dump if your mind starts racing.</p>
+  <p class="body"><b style="font-weight:500;">2. Take micro-breaks.</b> Every 90 minutes or so, stand up, roll your shoulders, look out a window, breathe. Sixty seconds. Attach it to something that already happens — after every meeting, before every chai — so you don't need willpower to remember.</p>
+  <p class="body"><b style="font-weight:500;">3. Learn one grounding tool.</b> When stress spikes, try a slow exhale: breathe in for four counts, out for eight, five times. A longer exhale signals your nervous system that the emergency is over. It's free, invisible, and works in the middle of a meeting.</p>
+  <div class="quotebox">"Your body keeps the score of every deadline.<br>Today, it gets a say."</div>
+  <div class="actionbox">
+    <h4>Today's ten minutes</h4>
+    <p>Fill the worksheet, then actually do one micro-break and one round of 4-in / 8-out breathing today. Notice the difference — that's your nervous system saying thank you.</p>
+  </div>
+  <div class="footer-tag">Day Five · The Burnout Reset</div>
+</section>
+
+<!-- ============ 14. DAY 5 WS ============ -->
+<section class="page">
+  <div class="ws-frame">
+    <div class="ws-title">Day 5: Body Check</div>
+    <div class="ws-q"><div class="q">Where does stress show up in my body? (shoulders, jaw, stomach, sleep, headaches…)</div><div class="line"></div><div class="line"></div><div class="line"></div></div>
+    <div class="ws-q"><div class="q">My sleep lately, honestly — what time I sleep, what steals it, how I wake up:</div><div class="line"></div><div class="line"></div><div class="line"></div></div>
+    <div class="ws-q"><div class="q">My micro-break anchor: after ______________________ , I will pause for one minute and breathe.</div></div>
+    <div class="ws-q"><div class="q">Tonight's wind-down: what I'll do in the last hour before bed (and where my phone will be):</div><div class="line"></div><div class="line"></div><div class="line"></div></div>
+    <div class="ws-q"><div class="q">One kind thing my body has done for me this week, even while exhausted:</div><div class="line"></div><div class="line"></div></div>
+  </div>
+</section>
+
+<!-- ============ 15. DAY 6 TEACH ============ -->
+<section class="page">
+  <div class="day-label">Day Six</div>
+  <h1 class="day-title">Remember Who You Are</h1>
+  <div class="script-sub">you existed before this job, this role, this tiredness</div>
+  <p class="body">Somewhere between the deadlines and the responsibilities, a quiet thing happens: you become your roles. The employee. The daughter. The wife. The reliable one. And the person underneath — the one who laughed easily, had hobbies for no reason, and wanted things just because she wanted them — goes quiet.</p>
+  <p class="body">Burnout recovery isn't complete when the exhaustion fades. It's complete when <i>you</i> come back. So today is not about work at all. It's about remembering what you're recovering <i>for</i>.</p>
+  <p class="body">Think about the last time you lost track of time in a good way. The things you loved at fifteen, at twenty. What you'd do with a free Saturday if nobody needed anything from you and nobody was watching. These aren't luxuries or childish things. They're your identity — and identity is fuel.</p>
+  <div class="quotebox">"You are not the tired version of yourself.<br>That's just the version that's been on duty too long."</div>
+  <div class="actionbox">
+    <h4>Today's ten minutes</h4>
+    <p>Fill the worksheet, then pick ONE thing from your joy list and put it in your calendar for this week — even a twenty-minute version. Treat it like a meeting you can't cancel, because the person you're meeting is you.</p>
+  </div>
+  <div class="footer-tag">Day Six · The Burnout Reset</div>
+</section>
+
+<!-- ============ 16. DAY 6 WS ============ -->
+<section class="page">
+  <div class="ws-frame">
+    <div class="ws-title">Day 6: The Joy List</div>
+    <div class="ws-q"><div class="q">Things I loved doing before I was this tired (go back years if you need to):</div><div class="line"></div><div class="line"></div><div class="line"></div></div>
+    <div class="ws-q"><div class="q">The last time I felt fully like myself — where was I, who was I with, what was I doing?</div><div class="line"></div><div class="line"></div><div class="line"></div></div>
+    <div class="ws-q"><div class="q">Three things that matter to me more than being impressive (my real values):</div><div class="line"></div><div class="line"></div><div class="line"></div></div>
+    <div class="ws-q"><div class="q">The one joy-list item I'm scheduling this week — and when:</div><div class="line"></div><div class="line"></div></div>
+  </div>
+</section>
+
+<!-- ============ 17. DAY 7 TEACH ============ -->
+<section class="page">
+  <div class="day-label">Day Seven</div>
+  <h1 class="day-title">Design Your Comeback</h1>
+  <div class="script-sub">decide from clarity, not from exhaustion</div>
+  <p class="body">You've named what drains you, emptied your mind, set a boundary, rested on purpose, listened to your body, and remembered who you are. Today, you turn all of it into a week you can actually live — and you look at the bigger question calmly.</p>
+  <p class="body"><b style="font-weight:500;">First, your non-negotiables.</b> Choose three small daily anchors you'll protect no matter how busy the week gets — a real lunch break, a wind-down hour, a two-minute brain dump. Non-negotiables are the difference between recovering and relapsing.</p>
+  <p class="body"><b style="font-weight:500;">Then, the big question.</b> Maybe you've been wondering whether to quit. Here's the honest truth: some burnout is about how you're working, and some is about where you're working. Day 1's audit usually tells you which. But make that call from a rested, clear mind — not a desperate one. "Stay and adjust," "stay while I build my exit," and "go" are all valid answers. Panic isn't a plan; clarity is.</p>
+  <div class="quotebox">"The goal was never just to feel better.<br>The goal is a life that doesn't require<br>recovering from itself."</div>
+  <div class="actionbox">
+    <h4>Today's ten minutes</h4>
+    <p>Complete the final worksheet, then re-score your energy (remember Day 1?). Most women find it's moved — not because life changed in a week, but because they stopped leaking and started choosing.</p>
+  </div>
+  <div class="footer-tag">Day Seven · The Burnout Reset</div>
+</section>
+
+<!-- ============ 18. DAY 7 WS ============ -->
+<section class="page">
+  <div class="ws-frame">
+    <div class="ws-title">Day 7: My Comeback Plan</div>
+    <div class="ws-q"><div class="q">My three daily non-negotiables (small, specific, protected):</div><div class="line"></div><div class="line"></div><div class="line"></div></div>
+    <div class="ws-q"><div class="q">This week I will STOP: &nbsp;/&nbsp; START: &nbsp;/&nbsp; KEEP:</div><div class="line"></div><div class="line"></div><div class="line"></div></div>
+    <div class="ws-q"><div class="q">About my work, my calm answer for now is (stay &amp; adjust / stay &amp; build my exit / go), because:</div><div class="line"></div><div class="line"></div><div class="line"></div></div>
+    <div class="ws-q"><div class="q">A note to the woman who started this guide seven days ago:</div><div class="line"></div><div class="line"></div><div class="line"></div></div>
+    <div class="ws-q"><div class="q">My energy today, 1–10: _______ &nbsp;&nbsp;(Day 1 it was: _______ )</div></div>
+  </div>
+</section>
+
+<!-- ============ 19. EARLY WARNING ============ -->
+<section class="page">
+  <div class="kicker">After the seven days</div>
+  <h1 class="day-title">Your Early-Warning System</h1>
+  <div class="script-sub">so you never slide this far again</div>
+  <p class="body">Burnout doesn't arrive overnight, and it doesn't announce itself. It creeps. The skill that protects you now is noticing early. These are the most common early signals — learn yours:</p>
+  <div class="check-row"><div class="box"></div><p>Skipping your non-negotiables "just this week."</p></div>
+  <div class="check-row"><div class="box"></div><p>Sleep shrinking while screen time grows.</p></div>
+  <div class="check-row"><div class="box"></div><p>Snapping at people you love over small things.</p></div>
+  <div class="check-row"><div class="box"></div><p>Saying yes fast again — and feeling that old flicker of resentment.</p></div>
+  <div class="check-row"><div class="box"></div><p>The Sunday-evening dread returning.</p></div>
+  <div class="actionbox">
+    <h4>The 10-minute maintenance ritual</h4>
+    <p><b>Daily (2 min):</b> quick brain dump before bed — empty the loops. &nbsp;<b>Weekly (5 min):</b> energy score out of 10, plus one question: "what drained me most this week, and what's my boundary for next week?" &nbsp;<b>Monthly (3 min):</b> re-read your Day 7 comeback plan and adjust it. If your energy score stays below 4 for three weeks straight, treat it as a red light — revisit this guide, and consider talking to a professional.</p>
+  </div>
+  <div class="footer-tag">The Burnout Reset · Dolly Builds</div>
+</section>
+
+<!-- ============ 20. GO DEEPER ============ -->
+<section class="page">
+  <div class="kicker">Keep going</div>
+  <h1 class="day-title">This Was Your Reset.<br>Here's How You Stay Reset.</h1>
+  <div class="script-sub">two tools I made for exactly this</div>
+  <p class="body">Seven days got you out of survival mode. Staying out of it is a daily practice — and these two companions were built to carry what you started here:</p>
+  <div class="card">
+    <div class="tagline">For the racing mind · Notion template</div>
+    <h3>The WHY Method</h3>
+    <p>The 10-minute brain declutter for women whose minds won't shut up. If Day 2 was your favorite day of this reset, this is that practice — deepened into a guided system you'll actually use daily. It helps you get every loop out of your head, question it, and end each day with a quiet mind.</p>
+  </div>
+  <div class="card">
+    <div class="tagline">For the daily practice · Printable journal</div>
+    <h3>The Self Reflection Journal</h3>
+    <p>A guided journal built on Stoic wisdom — morning reflections, reframing stressful thoughts, dismantling limiting beliefs, and weekly and monthly check-ins. If Days 6 and 7 lit something up in you, this journal is how you keep meeting yourself on paper, long after this week ends.</p>
+  </div>
+  <div class="actionbox" style="text-align:center;">
+    <h4 style="margin-bottom:4px;">Find both on my page</h4>
+    <p>Instagram: <b>@dollybuilds</b> — link in bio, or just DM me the word <b>RESET</b> and I'll send you the details.</p>
+  </div>
+  <div class="footer-tag">The Burnout Reset · Dolly Builds</div>
+</section>
+
+<!-- ============ 21. CLOSING ============ -->
+<section class="page">
+  <div style="height:1.2in;"></div>
+  <div class="script" style="font-size:36pt;text-align:center;margin-bottom:30px;">a note from me</div>
+  <p class="body" style="max-width:5.6in;margin:0 auto 14px;">I made this guide because I've been the woman who was "fine." The one with the good job, the full calendar, and the empty tank. Nobody teaches us that exhaustion isn't a personality trait — I had to learn it the slow way, and I built this so you could learn it in seven days instead.</p>
+  <p class="body" style="max-width:5.6in;margin:0 auto 14px;">If this guide helped you, tell me. Send me a message, share your Day 7 energy score, tell me which day cracked something open. I read everything.</p>
+  <p class="body" style="max-width:5.6in;margin:0 auto;">You were never lazy. You were never weak. You were just tired — and now you know what to do about it.</p>
+  <div class="script" style="font-size:30pt;text-align:center;margin-top:34px;">Dolly</div>
+  <div style="text-align:center;margin-top:8px;font-size:9.5pt;letter-spacing:0.22em;text-transform:uppercase;color:var(--brown);font-weight:500;">@dollybuilds</div>
+  <div style="position:absolute;bottom:0.55in;left:0.8in;right:0.8in;text-align:center;font-size:7.5pt;line-height:1.7;color:var(--ink-soft);">
+    This guide is for education and self-reflection. It is not medical or psychological treatment, and it is not a substitute for professional care.<br>
+    If you are experiencing persistent hopelessness or thoughts of self-harm, please reach out to a mental-health professional.<br>In India, you can call Tele-MANAS, the national mental-health helpline: 14416 (available 24/7).<br><br>
+    © 2026 Dolly Shahani · All rights reserved · For personal use only
+  </div>
+</section>
+
+</body>
+</html>
