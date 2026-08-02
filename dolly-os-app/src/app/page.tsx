@@ -52,6 +52,11 @@ export default function TodayPage() {
       <header>
         <h1 className="text-2xl font-bold">{state.displayDate}</h1>
         <p className="text-stone-500 mt-1">Day {state.streakDay} of streak ·</p>
+        {state.hook && (
+          <p className="mt-2 italic text-amber-700 font-medium leading-snug">
+            &ldquo;{state.hook}&rdquo;
+          </p>
+        )}
       </header>
 
       {/* THE ONE THING — rule 1: one task, huge type, tap = done */}

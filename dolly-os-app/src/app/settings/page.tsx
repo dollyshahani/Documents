@@ -7,6 +7,7 @@ type Settings = {
   night_time: string;
   timezone: string;
   in_bangalore: boolean;
+  morning_stack: string;
 };
 
 function urlBase64ToUint8Array(base64String: string) {
@@ -111,9 +112,26 @@ export default function SettingsPage() {
         onChange={(v) => save({ night_time: v })}
       />
       <p className="text-xs text-stone-400 -mt-3">
-        Push times are set by the server schedule (vercel.json). These fields are
-        the reference; changing the actual send time means editing the cron there.
+        These control the actual send times (checked every ~10 min by the tick
+        cron). Phone-out fires 30 min after the night ping. To test: set the
+        morning ping a few minutes ahead, lock your phone, wait.
       </p>
+
+      <div>
+        <p className="text-xs uppercase tracking-widest text-stone-400 mb-2">
+          morning stack
+        </p>
+        <input
+          value={settings.morning_stack}
+          onChange={(e) => save({ morning_stack: e.target.value })}
+          placeholder="e.g. B12, juice, funmax"
+          className="w-full border-2 border-stone-200 rounded-xl px-4 py-3 bg-white"
+        />
+        <p className="text-xs text-stone-400 mt-2">
+          Rides inside the morning push. One notification carries the whole
+          stack — more pings would just become noise you swipe away.
+        </p>
+      </div>
 
       <div>
         <p className="text-xs uppercase tracking-widest text-stone-400 mb-2">timezone</p>

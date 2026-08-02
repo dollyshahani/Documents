@@ -1,17 +1,14 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/supabase";
-import { cronAuthorized, sendToAll } from "@/lib/push";
+import { cronAuthorized } from "@/lib/push";
+import { sendPhonePush } from "@/lib/jobs";
 
 export const dynamic = "force-dynamic";
 
-export async function GET(req: Request) {
+export async function GET(req: NextRequest) {
   if (!cronAuthorized(req)) {
     return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   }
-  // Just a nudge. No deep link.
-  const result = await sendToAll(db(), {
-    title: "Phone out of the room.",
-    body: "This is where tomorrow morning is won.",
-  });
-  return NextResponse.json(result);
+  const force = req.nextUrl.searchParams.get("force") === "1";
+  return NextResponse.json(await sendPhonePush(db(), force));
 }

@@ -20,6 +20,7 @@ export type Day = {
   log_done: boolean;
   two_min_used: boolean;
   one_thing_done: boolean;
+  hook: string | null;
 };
 
 export type TodayState = {
@@ -32,6 +33,7 @@ export type TodayState = {
   postDone: boolean;
   logDone: boolean;
   oneThingDone: boolean;
+  hook: string | null;
 };
 
 export const TWO_MIN_TASK =

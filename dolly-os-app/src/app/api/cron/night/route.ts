@@ -1,17 +1,14 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/supabase";
-import { cronAuthorized, sendToAll } from "@/lib/push";
+import { cronAuthorized } from "@/lib/push";
+import { sendNightPush } from "@/lib/jobs";
 
 export const dynamic = "force-dynamic";
 
-export async function GET(req: Request) {
+export async function GET(req: NextRequest) {
   if (!cronAuthorized(req)) {
     return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   }
-  const result = await sendToAll(db(), {
-    title: "3 lines.",
-    body: "What shipped, one signal, tomorrow's one thing.",
-    url: "/log",
-  });
-  return NextResponse.json(result);
+  const force = req.nextUrl.searchParams.get("force") === "1";
+  return NextResponse.json(await sendNightPush(db(), force));
 }

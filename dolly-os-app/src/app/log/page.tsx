@@ -8,6 +8,7 @@ export default function LogPage() {
   const [shipped, setShipped] = useState("");
   const [signal, setSignal] = useState("");
   const [tomorrow, setTomorrow] = useState("");
+  const [hook, setHook] = useState("");
   const [mood, setMood] = useState<string | null>(null);
   const [saved, setSaved] = useState(false);
   const router = useRouter();
@@ -27,7 +28,7 @@ export default function LogPage() {
     const res = await fetch("/api/log", {
       method: "POST",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify({ shipped, signal, tomorrow, mood }),
+      body: JSON.stringify({ shipped, signal, tomorrow, hook, mood }),
     });
     if (res.ok) {
       setSaved(true);
@@ -59,6 +60,18 @@ export default function LogPage() {
         onChange={setTomorrow}
         placeholder="this becomes tomorrow's task"
       />
+      <div>
+        <LogInput
+          label="tomorrow's hook (optional)"
+          value={hook}
+          onChange={setHook}
+          placeholder="first line of tomorrow's reel"
+        />
+        <p className="text-xs text-stone-400 mt-2">
+          This becomes tomorrow&apos;s morning notification — you wake up to
+          your own hook.
+        </p>
+      </div>
 
       <div>
         <p className="text-xs uppercase tracking-widest text-stone-400 mb-2">mood</p>

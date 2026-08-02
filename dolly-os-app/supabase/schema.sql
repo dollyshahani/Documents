@@ -22,7 +22,8 @@ create table if not exists days (
   post_done boolean not null default false,
   log_done boolean not null default false,
   two_min_used boolean not null default false,
-  one_thing_done boolean not null default false
+  one_thing_done boolean not null default false,
+  hook text -- the day's yap hook: first line of the reel, becomes the morning push title
 );
 
 create table if not exists logs (
@@ -51,7 +52,15 @@ create table if not exists settings (
   morning_time text not null default '07:30',
   night_time text not null default '22:30',
   timezone text not null default 'Asia/Kolkata',
-  in_bangalore boolean not null default false
+  in_bangalore boolean not null default false,
+  morning_stack text not null default '' -- free text riding the morning push body: "meds, B12, juice"
+);
+
+-- one row per push actually sent, so the tick cron never double-sends
+create table if not exists push_log (
+  kind text not null,
+  date date not null,
+  primary key (kind, date)
 );
 
 -- Medications / peptides: adherence tracking only. Names + days, never doses.
@@ -91,3 +100,4 @@ alter table logs enable row level security;
 alter table streak enable row level security;
 alter table push_subs enable row level security;
 alter table settings enable row level security;
+alter table push_log enable row level security;

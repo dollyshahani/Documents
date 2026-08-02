@@ -55,6 +55,10 @@ export default function MedsPage() {
           Tick when taken. The schedule is your doctors&apos; job — this just
           tracks the tick.
         </p>
+        <p className="text-stone-400 mt-2 text-xs">
+          On a real prescribed protocol? Set a phone alarm for it. Meds
+          don&apos;t ride on experimental notification infrastructure.
+        </p>
       </header>
 
       {state.meds.length === 0 && !adding && (

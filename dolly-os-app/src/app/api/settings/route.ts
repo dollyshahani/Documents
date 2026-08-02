@@ -10,11 +10,12 @@ export async function GET() {
 }
 
 export async function POST(req: NextRequest) {
-  const { morning_time, night_time, timezone, in_bangalore } = await req.json();
+  const { morning_time, night_time, timezone, in_bangalore, morning_stack } =
+    await req.json();
   const sb = db();
   await sb
     .from("settings")
-    .update({ morning_time, night_time, timezone, in_bangalore })
+    .update({ morning_time, night_time, timezone, in_bangalore, morning_stack })
     .eq("id", 1);
   return NextResponse.json({ ok: true });
 }

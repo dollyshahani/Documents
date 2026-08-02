@@ -11,6 +11,7 @@ export async function getSettings(sb: SupabaseClient) {
       night_time: "22:30",
       timezone: "Asia/Kolkata",
       in_bangalore: false,
+      morning_stack: "",
     }
   );
 }
@@ -128,5 +129,6 @@ export async function getTodayState(): Promise<TodayState> {
     postDone: day.post_done,
     logDone: day.log_done,
     oneThingDone: day.one_thing_done,
+    hook: day.hook ?? null,
   };
 }
