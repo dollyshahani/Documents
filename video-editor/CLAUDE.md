@@ -154,3 +154,20 @@ polaroid pop-ups, staggered 0.25 s, on that line, leaving together when the line
   `py -3.12 Setup/scripts/photo_popups.py . <line_start> <line_len> <p1> <p2> <p3> --world day|night`
 - While a photo trio is on screen it is the only pop-up (no stickers/ribbons at the same time).
   No b-roll cutaway on an identity line — her face + the photos carry it.
+
+## Batch mode — several videos at once ("edit all", "edit these 8") — she hates waiting
+The slow parts (proxy encode, Whisper transcription, plan.py re-listening, rendering) are machine
+time. Never make her wait on them while there's something she could be reviewing.
+1. **Intake everything first, in the background.** For every clip in Raw: project folder, probe,
+   proxy, audio, transcribe — run these as background jobs (PowerShell `Start-Job`, 2 at a time;
+   Whisper is CPU-heavy, more than 2 makes all of them slower). Tell her once: "transcribing 8 —
+   first plan in ~N min". No play-by-play.
+2. **Gate 1 for all videos in ONE message** as soon as transcripts exist: per video — 2-line
+   summary, the cut list, hook title, identity lines + photos, sticker plan. She answers all at once
+   ("1 ok, 2 change the title to …, 3 skip"). Don't ask the same question 8 times.
+3. **Pipeline after that:** while she reviews video N, plan.py / animate / render for the others
+   runs in the background. Rough-cut previews: low-res (`scale=540:-2, -preset ultrafast`) only.
+4. **Skip the separate opening-only render (step 5) in batch mode** unless she asks — show static
+   mock frames of the opening instead; render the full video once.
+5. Report progress as a short table (video · stage · ETA), only when something changes.
+6. One shared learnings.md update at the end of the batch, not per video.
