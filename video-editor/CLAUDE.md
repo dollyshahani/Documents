@@ -109,3 +109,12 @@ Full spec in `Signature Style/signature-style.md`. The short version:
 - Trial reels: one edit, vary ONLY the title across versions.
 - "Day with me" / vlog reels: movement — the viewer comes along. No slow dissolve chains.
   The first 2 seconds must visually show what the hook claims.
+
+## After final approval → Dolly OS (Level 1 joins the one posting queue)
+Right after step 8's "I approve this as the final version": write a short Instagram caption
+in her voice (1-3 lines, blank line, 5-8 hashtags) to `Projects/<name>/caption.txt`, show it,
+then run
+`python Setup/scripts/send_to_dollyos.py Projects/<name>/POST_THIS_<name>.mp4 --hook "<hook title>" --caption Projects/<name>/caption.txt --pillar <ai-building|productivity>`
+It lands in the Dolly OS Reels tab as "needs you" (she taps approve → next Mon/Wed/Fri/Sun
+7:30 PM IST slot, or "post now"). Needs `.env` here (copy `.env.example`). The final file is
+never modified; an oversized final gets a smaller delivery copy for upload only.

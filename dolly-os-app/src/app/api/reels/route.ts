@@ -61,6 +61,9 @@ export async function POST(req: NextRequest) {
       patch.status = "rejected";
       break;
     case "redo":
+      if (reel.source === "upload") {
+        return NextResponse.json({ error: "your own edits are redone in video-editor, not here" }, { status: 400 });
+      }
       await sb.from("reels").update({ status: "regenerate", feedback: feedback || null }).eq("id", id);
       await writeReel(sb, { ...(reel as Reel), feedback: feedback || null });
       await kickRenderer();

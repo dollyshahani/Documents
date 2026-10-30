@@ -11,6 +11,7 @@ export type Reel = {
   id: string;
   created_at: string;
   status: string;
+  source: "auto" | "upload";
   topic: string;
   pillar: string;
   hook: string;

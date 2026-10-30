@@ -17,6 +17,7 @@ create table if not exists reels (
     'regenerate',  -- she asked for a redo (feedback goes back to Claude)
     'failed'
   )),
+  source text not null default 'auto' check (source in ('auto','upload')), -- 'upload' = her own edited video (video-editor/)
   topic text not null default '',
   pillar text not null default '',        -- 'ai-building' | 'productivity'
   hook text not null default '',
@@ -31,6 +32,9 @@ create table if not exists reels (
   posted_at timestamptz,
   error text
 );
+
+-- if you ran an earlier version of this file
+alter table reels add column if not exists source text not null default 'auto';
 
 create index if not exists reels_status_idx on reels (status);
 alter table reels enable row level security;

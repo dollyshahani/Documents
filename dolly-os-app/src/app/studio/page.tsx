@@ -86,7 +86,7 @@ export default function StudioPage() {
           {rest.map((r) => (
             <div key={r.id} className="rounded-xl border border-stone-200 p-4 flex flex-col gap-1">
               <div className="flex justify-between text-xs text-stone-400">
-                <span>{r.pillar}</span>
+                <span>{r.source === "upload" ? "your edit" : r.pillar}</span>
                 <span className={r.status === "failed" ? "text-red-600" : ""}>
                   {LABEL[r.status] ?? r.status}
                   {r.status === "approved" && r.scheduled_at ? ` · ${when(r.scheduled_at)}` : ""}
@@ -104,7 +104,7 @@ export default function StudioPage() {
                   </button>
                 </div>
               )}
-              {r.status === "failed" && (
+              {r.status === "failed" && r.source !== "upload" && (
                 <button
                   onClick={() => act({ action: "redo", id: r.id, feedback: "" })}
                   className="text-sm underline self-start"
@@ -135,7 +135,9 @@ function ReviewCard({
 
   return (
     <section className="rounded-2xl border-2 border-ink p-4 flex flex-col gap-3">
-      <p className="text-xs uppercase tracking-widest text-stone-400">needs you · {reel.pillar}</p>
+      <p className="text-xs uppercase tracking-widest text-stone-400">
+        needs you · {reel.source === "upload" ? "your edit" : reel.pillar || "auto"}
+      </p>
       {reel.video_url && (
         <video
           src={reel.video_url}
@@ -182,9 +184,13 @@ function ReviewCard({
           >
             post now
           </button>
-          <button onClick={() => setRedo(true)} className="py-2 rounded-xl border border-stone-300 text-sm">
-            redo
-          </button>
+          {reel.source === "upload" ? (
+            <span />
+          ) : (
+            <button onClick={() => setRedo(true)} className="py-2 rounded-xl border border-stone-300 text-sm">
+              redo
+            </button>
+          )}
           <button
             disabled={busy}
             onClick={() => act({ action: "reject", id: reel.id })}

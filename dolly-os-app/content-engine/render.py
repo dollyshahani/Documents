@@ -9,7 +9,7 @@ Two looks:
   - avatar: if the row has avatar_url (a talking-head clip, e.g. from Higgsfield),
     that clip is the picture + sound and captions are laid over it.
 
-Local smoke test without network:  python render.py --test out.mp4
+Local smoke test without network:  python render.py --test out.mp4 [ai-building|productivity]
 """
 
 import asyncio
@@ -25,19 +25,19 @@ from PIL import Image, ImageDraw, ImageFont
 
 W, H = 1080, 1920
 HERE = Path(__file__).parent
-FONT = str(HERE / "fonts" / "InterDisplay-Black.otf")
+FONTS = {"jost": str(HERE / "fonts" / "Jost.ttf"), "script": str(HERE / "fonts" / "Italianno.ttf")}
 VOICE = os.environ.get("VOICE", "en-IN-NeerjaNeural")
 RATE = os.environ.get("TTS_RATE", "+8%")
 
-# (background, accent) pairs — one per beat, cycling.
-PALETTE = [
-    ("#111111", "#FFE14D"),
-    ("#1E1B4B", "#A5F3FC"),
-    ("#3B0764", "#F9A8D4"),
-    ("#052E16", "#BEF264"),
-    ("#7C2D12", "#FDE68A"),
-    ("#0C4A6E", "#FDBA74"),
-]
+# @dollybuilds Signature Style (video-editor/Signature Style/signature-style.md).
+# DAY = cream/blush/cherry (productivity, manifest, yaps); NIGHT = maroon/gold/champagne (Built with AI).
+# Beats alternate between the two backgrounds of a world so cuts still read.
+WORLDS = {
+    "day": {"bg": ["#FFF8EA", "#F4C2C8"], "text": "#2A0710", "hi": "#B3122E", "soft": "#2A071099"},
+    "night": {"bg": ["#5C0F1E", "#2A0710"], "text": "#F3E6D3", "hi": "#E3C68F", "soft": "#F3E6D399"},
+}
+WORLD = WORLDS["day"]
+PILL = None  # e.g. "BUILT WITH AI" on night reels
 
 SB_URL = os.environ.get("SUPABASE_URL", "").rstrip("/")
 SB_KEY = os.environ.get("SUPABASE_SERVICE_ROLE_KEY", "")
@@ -63,11 +63,19 @@ def duration(path):
 
 # ---------- script → segments ----------
 
+def use_world(pillar):
+    global WORLD, PILL
+    night = pillar == "ai-building"
+    WORLD = WORLDS["night" if night else "day"]
+    PILL = "BUILT WITH AI" if night else None
+
+
 def segments_of(script):
     segs = [{"say": script["hook"], "screen": script["hook"]}]
     segs += [{"say": b["say"], "screen": b["screen"]} for b in script.get("beats", [])]
     if script.get("cta"):
         segs.append({"say": script["cta"], "screen": "Follow @dollybuilds"})
+    segs[-1]["last"] = True
     return segs
 
 
@@ -137,9 +145,12 @@ def voice_all(segs, work, fake=False):
 
 # ---------- drawing ----------
 
-def font(size):
+def font(size, weight="SemiBold", face="jost"):
     try:
-        return ImageFont.truetype(FONT, size)
+        f = ImageFont.truetype(FONTS[face], size)
+        if face == "jost":
+            f.set_variation_by_name(weight)
+        return f
     except OSError:
         return ImageFont.load_default(size)
 
@@ -176,41 +187,50 @@ def chunk_of(words, idx, size=3):
 
 
 def draw_frame(seg, seg_idx, word_idx, t, total, transparent=False):
-    bg, accent = PALETTE[seg_idx % len(PALETTE)]
-    img = Image.new("RGBA", (W, H), (0, 0, 0, 0) if transparent else bg)
+    w_ = WORLD
+    img = Image.new("RGBA", (W, H), (0, 0, 0, 0) if transparent else w_["bg"][seg_idx % 2])
     d = ImageDraw.Draw(img)
 
     if not transparent:
-        # Headline: the beat's on-screen text, big, upper third.
-        fnt, lines, size = fit_text(d, seg["screen"].upper(), W - 160, 620)
-        y = 330 + (620 - len(lines) * size * 1.12) / 2
+        d.text((W / 2, 250), "@dollybuilds", font=font(40, "Medium"), fill=w_["soft"], anchor="mm")
+        if PILL:
+            pf = font(36, "SemiBold")
+            pw = d.textlength(PILL, font=pf) + 64
+            d.rounded_rectangle([(W - pw) / 2, 300, (W + pw) / 2, 368], 34, fill="#B3122E")
+            d.text((W / 2, 334), PILL, font=pf, fill="#F3E6D3", anchor="mm")
+        # Headline: the beat's on-screen text, sentence case, upper-middle.
+        fnt, lines, size = fit_text(d, seg["screen"], W - 260, 560, start=128)
+        y = 460 + (560 - len(lines) * size * 1.12) / 2
         for line in lines:
             lw = d.textlength(line, font=fnt)
-            d.text(((W - lw) / 2, y), line, font=fnt, fill=accent)
+            d.text(((W - lw) / 2, y), line, font=fnt, fill=w_["text"])
             y += size * 1.12
-        d.text((80, 140), "@dollybuilds", font=font(40), fill="#FFFFFF99")
+        if seg.get("last"):
+            d.text((W / 2, 1180), "xo, dolly", font=font(110, face="script"), fill=w_["hi"], anchor="mm")
 
-    # Caption: 3-word chunk, current word highlighted, lower third.
+    # Caption: speech group, current word highlighted. Over video: white (her caption rule).
     words = seg["words"]
     if words and word_idx >= 0:
         first, chunk = chunk_of(words, word_idx)
-        cfnt = font(84)
+        cfnt = font(76, "SemiBold")
         texts = [w for w, _, _ in chunk]
         space = d.textlength(" ", font=cfnt)
         line_w = sum(d.textlength(w, font=cfnt) for w in texts) + space * (len(texts) - 1)
-        if line_w > W - 120:
-            cfnt = font(int(84 * (W - 120) / line_w))
+        if line_w > W - 280:
+            cfnt = font(int(76 * (W - 280) / line_w), "SemiBold")
             space = d.textlength(" ", font=cfnt)
             line_w = sum(d.textlength(w, font=cfnt) for w in texts) + space * (len(texts) - 1)
-        x, y = (W - line_w) / 2, 1320
+        x, y = (W - line_w) / 2, 1440
         for i, w in enumerate(texts):
             active = first + i == word_idx
-            d.text((x, y), w, font=cfnt, fill=accent if active else "#FFFFFF",
-                   stroke_width=8, stroke_fill="#000000")
+            if transparent:
+                d.text((x, y), w, font=cfnt, fill="#FFFFFF", stroke_width=3, stroke_fill="#00000080")
+            else:
+                d.text((x, y), w, font=cfnt, fill=w_["hi"] if active else w_["text"])
             x += d.textlength(w, font=cfnt) + space
 
-    # Progress bar
-    d.rectangle([0, H - 14, int(W * min(1, t / total)), H], fill=accent if not transparent else "#FFFFFF")
+    # Progress bar (thin, under the IG UI zone so it never fights the captions)
+    d.rectangle([0, H - 8, int(W * min(1, t / total)), H], fill="#FFFFFF" if transparent else w_["hi"])
     return img
 
 
@@ -326,6 +346,7 @@ def main():
             with tempfile.TemporaryDirectory() as tmp:
                 work = Path(tmp)
                 out = work / "reel.mp4"
+                use_world(reel.get("pillar"))
                 if reel.get("avatar_url"):
                     build_avatar(reel["script"], reel["avatar_url"], out, work)
                 else:
@@ -341,7 +362,8 @@ def main():
 
 
 if __name__ == "__main__":
-    if len(sys.argv) == 3 and sys.argv[1] == "--test":
+    if len(sys.argv) >= 3 and sys.argv[1] == "--test":  # --test out.mp4 [ai-building|productivity]
+        use_world(sys.argv[3] if len(sys.argv) > 3 else "productivity")
         demo = {
             "hook": "I let Claude run my Instagram for a week",
             "beats": [
