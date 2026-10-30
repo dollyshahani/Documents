@@ -22,3 +22,4 @@ B-roll/ai/*
 # her photos stay on the PC
 Photos/*
 !Photos/README.txt
+Setup/claude-path.txt
