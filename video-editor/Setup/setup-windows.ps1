@@ -24,7 +24,8 @@ Install "Git.Git" "git"
 Install "Gyan.FFmpeg" "ffmpeg"
 Install "Python.Python.3.12" "py"
 winget install -e --id LocalSend.LocalSend --silent --accept-source-agreements --accept-package-agreements | Out-Null
-$report += "ok   LocalSend (installed or already there)"
+$ls = @("$env:LOCALAPPDATA\Programs\LocalSend\localsend_app.exe", "$env:ProgramFiles\LocalSend\localsend_app.exe") | Where-Object { Test-Path $_ } | Select-Object -First 1
+if ($ls) { $report += "ok   LocalSend ($ls)" } else { $report += "FAIL LocalSend - run: winget install -e --id LocalSend.LocalSend" }
 
 # 2. the studio folder
 if (-not (Test-Path "$Root\.git")) {
@@ -37,7 +38,10 @@ git -C $Root pull origin $Branch
 if (Test-Path "$Studio\CLAUDE.md") { $report += "ok   studio at $Studio" } else { $report += "FAIL clone - check GitHub sign-in, re-run" }
 
 # 3. python packages + the Whisper model (one-time ~480 MB download)
-$py = if (Get-Command py -ErrorAction SilentlyContinue) { "py" } else { "python" }
+# Use the real python.exe, not the Microsoft Store "python" alias (which is what a fresh window finds first).
+$py = @("$env:LOCALAPPDATA\Programs\Python\Python312\python.exe", "$env:ProgramFiles\Python312\python.exe") | Where-Object { Test-Path $_ } | Select-Object -First 1
+if (-not $py) { $py = (Get-Command py -ErrorAction SilentlyContinue).Source }
+if (-not $py) { $py = "python" }
 & $py -m pip install --quiet --upgrade faster-whisper numpy pillow
 & $py -c "import faster_whisper, PIL, numpy; print('ok')"
 if ($LASTEXITCODE -eq 0) { $report += "ok   python packages" } else { $report += "FAIL python packages" }
@@ -72,7 +76,7 @@ if (Test-Path "$t\bars.mp4") { $report += "ok   render test ($t\bars.mp4)" } els
 if (-not (Test-Path "$Studio\.env")) { Copy-Item "$Studio\.env.example" "$Studio\.env"; $report += "todo fill in $Studio\.env (Supabase URL/key, app URL, CRON_SECRET)" }
 
 # 6. LocalSend: open it so the save folder can be set
-Start-Process "LocalSend" -ErrorAction SilentlyContinue
+if ($ls) { Start-Process $ls }
 Set-Clipboard "$Studio\Raw"
 
 Write-Host "`n===== REPORT =====" -ForegroundColor Green
