@@ -1,0 +1,11 @@
+# Videos stay on the PC — only code, style and READMEs go to git.
+Raw/*
+!Raw/README.txt
+Projects/*
+!Projects/README.txt
+*.mp4
+*.mov
+*.mkv
+*.wav
+.env
+__pycache__/
