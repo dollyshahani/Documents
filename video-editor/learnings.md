@@ -31,6 +31,10 @@ Rules below come from real corrections Dolly made. Newer entries override older 
 - Lashes/makeup-style filters are shoot-time, not post: she uses a beauty-camera app
   (Ulike) while filming; the pipeline only softens, never reshapes her face.
 - Clips reach the PC via LocalSend from her phone straight into Raw/.
+- Her PC is Windows: run every script as `py -3.12 Setup/scripts/<script>.py ...` (plain `python`
+  opens the Microsoft Store alias; `python3` doesn't exist). Set env vars PowerShell-style
+  (`$env:PAUSES="chatty"; $env:ZOOMCUTS="1"; py -3.12 ...`). Smart App Control is off (it blocked
+  PyAV). HF symlink warnings during transcription are harmless.
 
 ## Standing
 - Privacy cuts are absolute: remove every line that reveals the thing, indirect ones included.
