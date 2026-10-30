@@ -35,6 +35,8 @@ Rules below come from real corrections Dolly made. Newer entries override older 
   opens the Microsoft Store alias; `python3` doesn't exist). Set env vars PowerShell-style
   (`$env:PAUSES="chatty"; $env:ZOOMCUTS="1"; py -3.12 ...`). Smart App Control is off (it blocked
   PyAV). HF symlink warnings during transcription are harmless.
+- Identity statements get 3 of her photos as polaroid pop-ups (photo_popups.py). iPhone
+  HEIC photos need `py -3.12 -m pip install pillow-heif` once.
 
 ## Standing
 - Privacy cuts are absolute: remove every line that reveals the thing, indirect ones included.

@@ -19,3 +19,6 @@ B-roll/mine/*
 B-roll/stock/*
 B-roll/ai/*
 !B-roll/*/.keep
+# her photos stay on the PC
+Photos/*
+!Photos/README.txt

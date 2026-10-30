@@ -139,3 +139,18 @@ its `anim`. Custom text (place-time pills, "LIP · shade", prompt cards, STEP n 
 `python Setup/scripts/make_popups.py . --text "NEW YORK · 2024" --kind pill --world night --name place`
 (kinds: pill | ribbon | card ("line1|line2", `--label "copy this prompt" --mono` for prompts) | tag).
 She can drop her own transparent PNGs into the library; add them to index.json.
+
+## Identity statements → 3 photo pop-ups (her rule, Oct 30 2026)
+Every identity statement she makes ("I'm a girl who builds", "I'm becoming someone who…",
+"I am the kind of person…", or any line she marks as one) gets **three of her photos** as
+polaroid pop-ups, staggered 0.25 s, on that line, leaving together when the line ends.
+- At the script-pass gate (step 2), list every identity statement you found with timestamps and
+  the 3 photos you'd use for each (by index number from `Photos/index.json`). She can swap them.
+- Photos come from `Photos/` (her pictures). Run `py -3.12 Setup/scripts/photos_index.py`, look at
+  the sheets in `Photos/_sheets/`, tag new photos. Match photo to statement (builder → laptop/desk
+  shots, glam → outfit shots…). Never repeat a photo inside one reel; avoid ones used in the last 5.
+- If `Photos/` has nothing that fits, say so at the gate — don't use stock or AI images for this.
+- Build at step 5, BEFORE animate.py:
+  `py -3.12 Setup/scripts/photo_popups.py . <line_start> <line_len> <p1> <p2> <p3> --world day|night`
+- While a photo trio is on screen it is the only pop-up (no stickers/ribbons at the same time).
+  No b-roll cutaway on an identity line — her face + the photos carry it.
