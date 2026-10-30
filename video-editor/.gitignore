@@ -9,3 +9,13 @@ Projects/*
 *.wav
 .env
 __pycache__/
+# B-roll clips stay on the PC (index + sheets too: they describe local files)
+B-roll/*
+!B-roll/README.txt
+!B-roll/mine/
+!B-roll/stock/
+!B-roll/ai/
+B-roll/mine/*
+B-roll/stock/*
+B-roll/ai/*
+!B-roll/*/.keep

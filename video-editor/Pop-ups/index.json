@@ -1,0 +1,516 @@
+[
+ {
+  "png": "day/pill-built-with-ai.png",
+  "world": "day",
+  "kind": "pill",
+  "anim": "pop",
+  "w": 343,
+  "h": 80,
+  "tags": [
+   "ai",
+   "teaching"
+  ]
+ },
+ {
+  "png": "day/pill-step-1-of-4.png",
+  "world": "day",
+  "kind": "pill",
+  "anim": "pop",
+  "w": 302,
+  "h": 80,
+  "tags": [
+   "teaching",
+   "steps"
+  ]
+ },
+ {
+  "png": "day/pill-step-2-of-4.png",
+  "world": "day",
+  "kind": "pill",
+  "anim": "pop",
+  "w": 307,
+  "h": 80,
+  "tags": [
+   "teaching",
+   "steps"
+  ]
+ },
+ {
+  "png": "day/pill-step-3-of-4.png",
+  "world": "day",
+  "kind": "pill",
+  "anim": "pop",
+  "w": 306,
+  "h": 80,
+  "tags": [
+   "teaching",
+   "steps"
+  ]
+ },
+ {
+  "png": "day/pill-step-4-of-4.png",
+  "world": "day",
+  "kind": "pill",
+  "anim": "pop",
+  "w": 308,
+  "h": 80,
+  "tags": [
+   "teaching",
+   "steps"
+  ]
+ },
+ {
+  "png": "day/pill-save-this.png",
+  "world": "day",
+  "kind": "pill",
+  "anim": "pulse",
+  "w": 316,
+  "h": 91,
+  "tags": [
+   "save",
+   "cta"
+  ]
+ },
+ {
+  "png": "day/pill-copy-this-prompt.png",
+  "world": "day",
+  "kind": "pill",
+  "anim": "rise",
+  "w": 314,
+  "h": 68,
+  "tags": [
+   "ai",
+   "prompt"
+  ]
+ },
+ {
+  "png": "day/ribbon-wow.png",
+  "world": "day",
+  "kind": "ribbon",
+  "anim": "pop",
+  "w": 609,
+  "h": 99,
+  "tags": [
+   "sass"
+  ]
+ },
+ {
+  "png": "day/ribbon-bestie-no.png",
+  "world": "day",
+  "kind": "ribbon",
+  "anim": "pop",
+  "w": 319,
+  "h": 99,
+  "tags": [
+   "sass"
+  ]
+ },
+ {
+  "png": "day/ribbon-noted.png",
+  "world": "day",
+  "kind": "ribbon",
+  "anim": "pop",
+  "w": 436,
+  "h": 99,
+  "tags": [
+   "sass"
+  ]
+ },
+ {
+  "png": "day/ribbon-delulu.png",
+  "world": "day",
+  "kind": "ribbon",
+  "anim": "pop",
+  "w": 645,
+  "h": 99,
+  "tags": [
+   "sass"
+  ]
+ },
+ {
+  "png": "day/ribbon-plot-twist.png",
+  "world": "day",
+  "kind": "ribbon",
+  "anim": "pop",
+  "w": 320,
+  "h": 99,
+  "tags": [
+   "sass",
+   "story"
+  ]
+ },
+ {
+  "png": "day/ribbon-already-mine.png",
+  "world": "day",
+  "kind": "ribbon",
+  "anim": "pop",
+  "w": 479,
+  "h": 99,
+  "tags": [
+   "sass",
+   "manifest"
+  ]
+ },
+ {
+  "png": "day/card-chapter-01.png",
+  "world": "day",
+  "kind": "card",
+  "anim": "rise",
+  "w": 620,
+  "h": 174,
+  "tags": [
+   "story"
+  ]
+ },
+ {
+  "png": "day/tag-build.png",
+  "world": "day",
+  "kind": "tag",
+  "anim": "pop",
+  "w": 335,
+  "h": 72,
+  "tags": [
+   "ai",
+   "code"
+  ]
+ },
+ {
+  "png": "day/signoff-xo-dolly.png",
+  "world": "day",
+  "kind": "signoff",
+  "anim": "rise",
+  "w": 281,
+  "h": 124,
+  "tags": [
+   "signoff"
+  ]
+ },
+ {
+  "png": "day/signoff-grwm.png",
+  "world": "day",
+  "kind": "signoff",
+  "anim": "rise",
+  "w": 579,
+  "h": 124,
+  "tags": [
+   "glam"
+  ]
+ },
+ {
+  "png": "day/sticker-sparkles.png",
+  "world": "day",
+  "kind": "sticker",
+  "anim": "float",
+  "w": 229,
+  "h": 212,
+  "tags": [
+   "manifest",
+   "sparkle"
+  ]
+ },
+ {
+  "png": "day/sticker-bow.png",
+  "world": "day",
+  "kind": "sticker",
+  "anim": "float",
+  "w": 288,
+  "h": 208,
+  "tags": [
+   "manifest",
+   "bow",
+   "glam"
+  ]
+ },
+ {
+  "png": "day/sticker-heart.png",
+  "world": "day",
+  "kind": "sticker",
+  "anim": "pop",
+  "w": 168,
+  "h": 152,
+  "tags": [
+   "love"
+  ]
+ },
+ {
+  "png": "day/sticker-moon.png",
+  "world": "day",
+  "kind": "sticker",
+  "anim": "float",
+  "w": 168,
+  "h": 188,
+  "tags": [
+   "manifest",
+   "night"
+  ]
+ },
+ {
+  "png": "day/sticker-cherries.png",
+  "world": "day",
+  "kind": "sticker",
+  "anim": "pop",
+  "w": 200,
+  "h": 239,
+  "tags": [
+   "cute",
+   "brand"
+  ]
+ },
+ {
+  "png": "night/pill-built-with-ai.png",
+  "world": "night",
+  "kind": "pill",
+  "anim": "pop",
+  "w": 343,
+  "h": 80,
+  "tags": [
+   "ai",
+   "teaching"
+  ]
+ },
+ {
+  "png": "night/pill-step-1-of-4.png",
+  "world": "night",
+  "kind": "pill",
+  "anim": "pop",
+  "w": 302,
+  "h": 80,
+  "tags": [
+   "teaching",
+   "steps"
+  ]
+ },
+ {
+  "png": "night/pill-step-2-of-4.png",
+  "world": "night",
+  "kind": "pill",
+  "anim": "pop",
+  "w": 307,
+  "h": 80,
+  "tags": [
+   "teaching",
+   "steps"
+  ]
+ },
+ {
+  "png": "night/pill-step-3-of-4.png",
+  "world": "night",
+  "kind": "pill",
+  "anim": "pop",
+  "w": 306,
+  "h": 80,
+  "tags": [
+   "teaching",
+   "steps"
+  ]
+ },
+ {
+  "png": "night/pill-step-4-of-4.png",
+  "world": "night",
+  "kind": "pill",
+  "anim": "pop",
+  "w": 308,
+  "h": 80,
+  "tags": [
+   "teaching",
+   "steps"
+  ]
+ },
+ {
+  "png": "night/pill-save-this.png",
+  "world": "night",
+  "kind": "pill",
+  "anim": "pulse",
+  "w": 316,
+  "h": 91,
+  "tags": [
+   "save",
+   "cta"
+  ]
+ },
+ {
+  "png": "night/pill-copy-this-prompt.png",
+  "world": "night",
+  "kind": "pill",
+  "anim": "rise",
+  "w": 314,
+  "h": 68,
+  "tags": [
+   "ai",
+   "prompt"
+  ]
+ },
+ {
+  "png": "night/ribbon-wow.png",
+  "world": "night",
+  "kind": "ribbon",
+  "anim": "pop",
+  "w": 609,
+  "h": 99,
+  "tags": [
+   "sass"
+  ]
+ },
+ {
+  "png": "night/ribbon-bestie-no.png",
+  "world": "night",
+  "kind": "ribbon",
+  "anim": "pop",
+  "w": 319,
+  "h": 99,
+  "tags": [
+   "sass"
+  ]
+ },
+ {
+  "png": "night/ribbon-noted.png",
+  "world": "night",
+  "kind": "ribbon",
+  "anim": "pop",
+  "w": 436,
+  "h": 99,
+  "tags": [
+   "sass"
+  ]
+ },
+ {
+  "png": "night/ribbon-delulu.png",
+  "world": "night",
+  "kind": "ribbon",
+  "anim": "pop",
+  "w": 645,
+  "h": 99,
+  "tags": [
+   "sass"
+  ]
+ },
+ {
+  "png": "night/ribbon-plot-twist.png",
+  "world": "night",
+  "kind": "ribbon",
+  "anim": "pop",
+  "w": 320,
+  "h": 99,
+  "tags": [
+   "sass",
+   "story"
+  ]
+ },
+ {
+  "png": "night/ribbon-already-mine.png",
+  "world": "night",
+  "kind": "ribbon",
+  "anim": "pop",
+  "w": 479,
+  "h": 99,
+  "tags": [
+   "sass",
+   "manifest"
+  ]
+ },
+ {
+  "png": "night/card-chapter-01.png",
+  "world": "night",
+  "kind": "card",
+  "anim": "rise",
+  "w": 620,
+  "h": 174,
+  "tags": [
+   "story"
+  ]
+ },
+ {
+  "png": "night/tag-build.png",
+  "world": "night",
+  "kind": "tag",
+  "anim": "pop",
+  "w": 335,
+  "h": 72,
+  "tags": [
+   "ai",
+   "code"
+  ]
+ },
+ {
+  "png": "night/signoff-xo-dolly.png",
+  "world": "night",
+  "kind": "signoff",
+  "anim": "rise",
+  "w": 281,
+  "h": 124,
+  "tags": [
+   "signoff"
+  ]
+ },
+ {
+  "png": "night/signoff-grwm.png",
+  "world": "night",
+  "kind": "signoff",
+  "anim": "rise",
+  "w": 579,
+  "h": 124,
+  "tags": [
+   "glam"
+  ]
+ },
+ {
+  "png": "night/sticker-sparkles.png",
+  "world": "night",
+  "kind": "sticker",
+  "anim": "float",
+  "w": 229,
+  "h": 212,
+  "tags": [
+   "manifest",
+   "sparkle"
+  ]
+ },
+ {
+  "png": "night/sticker-bow.png",
+  "world": "night",
+  "kind": "sticker",
+  "anim": "float",
+  "w": 288,
+  "h": 208,
+  "tags": [
+   "manifest",
+   "bow",
+   "glam"
+  ]
+ },
+ {
+  "png": "night/sticker-heart.png",
+  "world": "night",
+  "kind": "sticker",
+  "anim": "pop",
+  "w": 168,
+  "h": 152,
+  "tags": [
+   "love"
+  ]
+ },
+ {
+  "png": "night/sticker-moon.png",
+  "world": "night",
+  "kind": "sticker",
+  "anim": "float",
+  "w": 168,
+  "h": 188,
+  "tags": [
+   "manifest",
+   "night"
+  ]
+ },
+ {
+  "png": "night/sticker-cherries.png",
+  "world": "night",
+  "kind": "sticker",
+  "anim": "pop",
+  "w": 200,
+  "h": 239,
+  "tags": [
+   "cute",
+   "brand"
+  ]
+ }
+]

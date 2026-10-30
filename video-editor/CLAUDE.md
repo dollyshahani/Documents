@@ -118,3 +118,24 @@ then run
 It lands in the Dolly OS Reels tab as "needs you" (she taps approve → next Mon/Wed/Fri/Sun
 7:30 PM IST slot, or "post now"). Needs `.env` here (copy `.env.example`). The final file is
 never modified; an oversized final gets a smaller delivery copy for upload only.
+
+## B-roll and pop-up libraries
+**B-roll** (`B-roll/`): `mine/` (her phone clips), `stock/` (Pexels), `ai/` (Higgsfield).
+- Priority: her own clips → stock → AI **only as a last resort**, and say so at the gate when an AI clip is proposed.
+- At intake run `python Setup/scripts/broll_index.py`, then LOOK at every sheet it lists and fill
+  `desc`, `tags`, `world` (day|night|any) in `B-roll/index.json`, set `needs_tags` false.
+- Need something that isn't there: `python Setup/scripts/pexels.py "<what the line shows>" --n 4`, index, tag.
+- **2-3 full-screen cutaways per 30-60s reel**, on lines where showing beats telling. Never during
+  the hook title, never cutting away mid-word of a punch line. Her voice only — b-roll is silent.
+  Hard cut in/out, no colour change, no speed change, cover-crop to 9:16.
+- Place them at the storyboard gate (step 4, with timestamps from `words_cut.json`), build at step 5/6
+  AFTER animate.py: `python Setup/scripts/broll_cut.py . <B-roll/clip> <clip_start> <dur> <at>`.
+  Re-run after any re-plan (timings shift). Add the reel name to the clip's `used_in`; avoid
+  reusing a clip that appeared in the last 5 reels.
+
+**Pop-ups** (`Pop-ups/day`, `Pop-ups/night`, listed in `Pop-ups/index.json` with default `anim`):
+reuse the library first — copy the PNG into the project and reference it in overlays.json with
+its `anim`. Custom text (place-time pills, "LIP · shade", prompt cards, STEP n OF 4):
+`python Setup/scripts/make_popups.py . --text "NEW YORK · 2024" --kind pill --world night --name place`
+(kinds: pill | ribbon | card ("line1|line2", `--label "copy this prompt" --mono` for prompts) | tag).
+She can drop her own transparent PNGs into the library; add them to index.json.
