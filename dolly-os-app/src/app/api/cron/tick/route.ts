@@ -3,8 +3,11 @@ import { db } from "@/lib/supabase";
 import { cronAuthorized } from "@/lib/push";
 import { getSettings } from "@/lib/today";
 import { sendMorningPush, sendNightPush, sendPhonePush } from "@/lib/jobs";
+import { publishDue, rewriteRequested, topUpReels } from "@/lib/reels";
+import { todayInTz } from "@/lib/dates";
 
 export const dynamic = "force-dynamic";
+export const maxDuration = 60;
 
 // The scheduler entrypoint. Hit this every ~10 minutes (Vercel Pro cron, or
 // cron-job.org on the Hobby plan) and it sends whichever pushes are due based
@@ -50,6 +53,22 @@ export async function GET(req: NextRequest) {
   if (due(now, morningAt)) ran.morning = await sendMorningPush(sb);
   if (due(now, nightAt)) ran.night = await sendNightPush(sb);
   if (due(now, phoneAt)) ran.phone = await sendPhonePush(sb);
+
+  // Reel machine: post what's due, redo what she bounced, and once a day
+  // write a fresh script if the pipe is running low.
+  const step = async (name: string, fn: () => Promise<unknown>) => {
+    try {
+      ran[name] = await fn();
+    } catch (e: any) {
+      ran[name] = `error: ${e.message}`;
+    }
+  };
+  await step("instagram", () => publishDue(sb));
+  await step("redo", () => rewriteRequested(sb));
+  const { error: claimed } = await sb
+    .from("push_log")
+    .insert({ kind: "reel_script", date: todayInTz(settings.timezone) });
+  if (!claimed) await step("script", () => topUpReels(sb));
 
   return NextResponse.json(ran);
 }

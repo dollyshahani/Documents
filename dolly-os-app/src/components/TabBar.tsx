@@ -8,6 +8,7 @@ const TABS = [
   { href: "/week", label: "Week" },
   { href: "/month", label: "Month" },
   { href: "/log", label: "Log" },
+  { href: "/studio", label: "Reels" },
   { href: "/meds", label: "Meds" },
   { href: "/settings", label: "•••" },
 ];
